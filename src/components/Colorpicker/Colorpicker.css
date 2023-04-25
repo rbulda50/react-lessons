@@ -1,0 +1,24 @@
+.ColorPicker__option {
+    width: 30px;
+    height: 30px;
+    display: block;
+
+    transition: transform 250ms linear;
+}
+
+.ColorPicker__option + .ColorPicker__option {
+    margin-left: 15px;
+}
+
+.ColorPicker {
+    padding: 50px;
+}
+
+.ColorPicker > div {
+    display: flex;
+}
+
+.ColorPicker__option--active {
+    transform: scale(1.3);
+}
+
