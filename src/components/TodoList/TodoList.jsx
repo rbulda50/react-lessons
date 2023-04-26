@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import './TodoList.css';
 import TodoCounter from './TodoCounter'
 
-const TodoList = ({ todos, onDeleteTodo }) => (
+const TodoList = ({ todos, onDeleteTodo, onToggleCompleted }) => (
     <ul className="TodoList">
         <TodoCounter todos={todos} />
         {todos.map(({ id, text, completed }) => (
@@ -10,7 +10,15 @@ const TodoList = ({ todos, onDeleteTodo }) => (
                 key={id}
                 className={
                     completed ? 'TodoList__item TodoList__item--completed' : 'TodoList__item'}>
+                
+                <input
+                    type="checkbox"
+                    className="TodoList__checkbox"
+                    checked={completed}
+                    onChange={() => onToggleCompleted(id)} />
+                
                 <p>{text}</p>
+
                 <button
                     className="TodoList__button"
                     onClick={() => onDeleteTodo(id)}
