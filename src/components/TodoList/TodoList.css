@@ -1,0 +1,26 @@
+.TodoList {
+    padding: 100px;
+    border: 1px solid black;
+}
+
+.TodoList__item {
+    width: calc(100vw / 4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.TodoList__item + .TodoList__item {
+    margin-top: 15px;
+}
+
+.TodoList__button {
+    padding: 0;
+    height: 20px;
+}
+
+.TodoList__item--completed {
+    text-decoration-line: line-through;
+}
