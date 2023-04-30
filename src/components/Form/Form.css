@@ -1,4 +1,6 @@
 .Form {
     display: flex;
     flex-direction: column;
+    padding-left: 100px;
+    padding-bottom: 100px;
 }

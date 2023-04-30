@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import './TodoList.css';
 import TodoCounter from './TodoCounter'
 

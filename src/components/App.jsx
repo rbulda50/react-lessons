@@ -72,17 +72,15 @@ export class App extends Component {
   };
 
   render() {
-    const { todos } = this.state;
-
     const visibleTodos = this.getVisibleTodos();
 
     return (
       <div>
-      {/* <Counter initialValue={10} /> */}
+      <Counter initialValue={10} />
 
-      {/* <Dropdown /> */}
+      <Dropdown />
 
-      {/* <ColorPicker options={ColorPickerOptions} /> */}
+      <ColorPicker options={ColorPickerOptions} />
 
       <TodoEditor onSubmit={this.addTodo} />
         <Filter
@@ -93,7 +91,7 @@ export class App extends Component {
         onDeleteTodo={this.deleteTodo}
         onToggleCompleted={this.toggleCompleted} />
     
-      {/* <Form submit={this.formSubmitHandler} /> */}
+      <Form submit={this.formSubmitHandler} />
     </div>)
   }
 };
