@@ -6,8 +6,14 @@ import ColorPicker from "./Colorpicker";
 import TodoList from "./TodoList";
 import Form from './Form';
 import TodoEditor from 'components/TodoList/TodoEditor';
-import Filter from 'components/TodoList/Filter'
-
+import Filter from 'components/TodoList/Filter';
+import Modal from './Modal';
+import Clock from './Clock';
+import Tabs from './Tabs';
+import tabs from "../tabs.json";
+import IconButton from './IconButton';
+import { ReactComponent as AddIcon } from '../icons/add.svg';
+import { ReactComponent as DeleteIcon } from '../icons/delete.svg';
 
 const ColorPickerOptions = [
   { label: 'red', color: '#F44336'},
@@ -20,14 +26,38 @@ const ColorPickerOptions = [
 
 export class App extends Component {
   state = {
-    todos: [
-      { id: 'id-1', text: 'Купить машину', completed: false },
-      { id: 'id-2', text: 'Випить пива', completed: true },
-      { id: 'id-3', text: 'Пожрить шашлик', completed: true },
-      { id: 'id-4', text: 'Купить будинок', completed: false },
-      { id: 'id-5', text: 'Заробить 1000000$', completed: false },
-    ],
+    todos: [ ],
     filter: '',
+    showModal: false,
+  };
+
+  componentDidMount() {
+
+    const parsedTodos = JSON.parse(localStorage.getItem('todos'));
+
+    if (parsedTodos) {
+      this.setState({todos: parsedTodos})
+    };
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    const nextTodos = this.state.todos;
+    const prevTodos = prevState.todos;
+    const { todos } = this.state;
+
+    if (todos !== prevTodos) {
+        localStorage.setItem('todos', JSON.stringify(todos))
+    };
+
+    if (nextTodos.length > prevTodos.length && prevTodos.length !== 0) {
+      this.toggleModal();
+    }
+  }
+
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
   };
 
   addTodo = (text) => {
@@ -76,22 +106,39 @@ export class App extends Component {
 
     return (
       <div>
-      <Counter initialValue={10} />
 
-      <Dropdown />
+      {/* <Tabs items={tabs} /> */}
 
-      <ColorPicker options={ColorPickerOptions} />
+        {/* <Clock /> */}
 
-      <TodoEditor onSubmit={this.addTodo} />
-        <Filter
+        <IconButton onClick={this.toggleModal}>
+          <AddIcon width="40" height="40"/>
+        </IconButton>
+
+        {this.state.showModal &&
+          <Modal onClose={this.toggleModal} >
+          <TodoEditor onSubmit={this.addTodo} />
+
+            <IconButton onClick={this.toggleModal}>
+              <DeleteIcon width="40" height="40"/>
+            </IconButton>
+          </Modal>}
+
+      {/* <Counter initialValue={10} /> */}
+
+      {/* <Dropdown /> */}
+
+      {/* <ColorPicker options={ColorPickerOptions} /> */}
+
+      <Filter
           value={this.state.filter}
-          onChange={this.changeFilter} />
+              onChange={this.changeFilter} />
       <TodoList
         todos={visibleTodos}
         onDeleteTodo={this.deleteTodo}
         onToggleCompleted={this.toggleCompleted} />
     
-      <Form submit={this.formSubmitHandler} />
+        {/* <Form submit={this.formSubmitHandler} /> */}
     </div>)
   }
 };
