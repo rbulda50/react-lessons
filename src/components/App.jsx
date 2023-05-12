@@ -110,7 +110,7 @@ export class App extends Component {
       {/* <Tabs items={tabs} /> */}
 
         {/* <Clock /> */}
-
+{/* 
         <IconButton onClick={this.toggleModal}>
           <AddIcon width="40" height="40"/>
         </IconButton>
@@ -122,7 +122,7 @@ export class App extends Component {
             <IconButton onClick={this.toggleModal}>
               <DeleteIcon width="40" height="40"/>
             </IconButton>
-          </Modal>}
+          </Modal>} */}
 
       {/* <Counter initialValue={10} /> */}
 
@@ -130,15 +130,15 @@ export class App extends Component {
 
       {/* <ColorPicker options={ColorPickerOptions} /> */}
 
-      <Filter
+      {/* <Filter
           value={this.state.filter}
               onChange={this.changeFilter} />
       <TodoList
         todos={visibleTodos}
         onDeleteTodo={this.deleteTodo}
-        onToggleCompleted={this.toggleCompleted} />
+        onToggleCompleted={this.toggleCompleted} /> */}
     
-        {/* <Form submit={this.formSubmitHandler} /> */}
+        <Form submit={this.formSubmitHandler} />
     </div>)
   }
 };

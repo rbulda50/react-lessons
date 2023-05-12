@@ -1,0 +1,6 @@
+.Clock__face {
+    padding-top: 300px;
+    font-size: 48px;
+display: flex;
+justify-content: center;
+}
